@@ -3,7 +3,7 @@
 int ft_str_is_alpha(char *str)
 {
     // Verificar si el string es vacío
-    if (*str == '\0')
+    if (*str == ' ')
         return 1;
 
     while (*str)
