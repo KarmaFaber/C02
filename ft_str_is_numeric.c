@@ -14,7 +14,7 @@ int     ft_str_is_numeric(char *str)
           }
           return (1);
   }
-  #include <stdio.h>
+  /*#include <stdio.h>
   int main()
   {
   
@@ -30,4 +30,4 @@ int     ft_str_is_numeric(char *str)
          printf("Valor inesperado\n");
       }
       return 0;
- }
+ }*/
