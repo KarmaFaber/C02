@@ -16,28 +16,34 @@ char *ft_strupcase(char *str)
 
 
 #include <stdio.h>
+#include <unistd.h>
 
 int main ()
 {
-    char original [] ="sr";
-    
-    char *modif= ft_strupcase(original);
-    
+    char original[] = "sRb";
+    char copia[sizeof(original)];
 
-    printf("string original: %s\n", original);
-    printf("string modificado: %s\n", modif);
+    // Hacer una copia del string original
+    int i = 0;
+    while (original[i] != '\0')
+    {
+        copia[i] = original[i];
+        i++;
+    }
+    copia[i] = '\0'; // Asegurar que la copia termina en '\0'
+
+    // Modificar la copia
+    char *modif = ft_strupcase(copia);
+
+    // Imprimir el string original usando write
+    write(1, "string original: ", 17);
+    write(1, original, sizeof(original) - 1);
+    write(1, "\n", 1);
+
+    // Imprimir el string modificado usando write
+    write(1, "string modificado: ", 19);
+    write(1, modif, sizeof(copia) - 1);
+    write(1, "\n", 1);
 
     return 0;
 }
-
-
-/*int main() {
-    char original[] = "bSaSf";
-
-    char *modified_upper = ft_strupcase(original);
-
-    printf("String original: %s\n", original); // Original string remains unchanged
-    printf("String modified: %s\n", modified_upper); // Use the modified copy
-
-    return 0;
-}*/
