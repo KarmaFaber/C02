@@ -5,13 +5,11 @@ char *ft_strlowcase(char *str)
     i = 0;
     while (str [i] != '\0')
     {
-        if (str [i] >='A' && str [i] <='Z')
-        {
-            str[i] =str[i] + 32; 
-        }
+        if (str[i] >= 'A' && str i] <= 'Z')
+            str[i] = str[i] + 32; 
         i ++ ;
     }
-    return str;
+    return (str);
 }
 
 
