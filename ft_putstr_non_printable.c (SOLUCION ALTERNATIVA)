@@ -1,0 +1,37 @@
+#include <unistd.h>
+
+//fucnion ft_putchar
+void ft_putchar(char c) {
+    write(1, &c, 1);
+}
+
+// Función auxiliar para imprimir una representación hexadecimal de un carácter en el rango 00 -15 (caracteres de control en ASCII - ec algunos de ellos los llamaremos secuancias de escape)
+void ft_puthex(unsigned char c) { /*Se encarga de imprimir la representación hexadecimal de un carácter no imprimible. Usamos unsigned char para asegurarnos de que estamos tratando con un valor entre 0 y 255, lo cual es el rango válido para caracteres ASCII extendidos.*/
+    char *hex = "0123456789abcdef"; /*Usa un arreglo de caracteres hex para obtener la representación en hexadecimal. Este arreglo de caracteres contiene los dígitos hexadecimales del 0 al 9 y de la a a la f. Se utiliza para convertir un valor numérico (0-15) en su representación hexadecimal.*/
+
+    ft_putchar('\\'); /*Primero imprimimos una barra invertida (\). Esta barra invertida es el prefijo que indica que el siguiente par de caracteres representan un valor hexadecimal.*/
+    ft_putchar('0'); /*imprimimos el \0, como pide el ejercicio*/
+    
+    //ft_putchar(hex[c / 16]);
+    //ft_putchar(hex[c % 16]);
+  
+}
+
+
+void ft_putstr_non_printable(char *str) {
+    int i = 0;
+
+    while (str[i] != '\0') {
+        if (str[i] >= 32 && str[i] <= 126) 
+            write(1, &str[i], 1);
+        else 
+            ft_puthex((unsigned char)str[i]);
+            
+        i++;
+    }
+}
+
+int main(void) {
+    ft_putstr_non_printable("Coucou\vtu vas bien ?");
+    return 0;
+}
