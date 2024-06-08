@@ -32,12 +32,13 @@ char *ft_strdowncase(char *str) // pasar a minusculas
     return str;
 }
 
-// Comprobar si el carácter es alfanumérico
+// Comprobar si el carácter es alfabetico
 int ft_is_al(char c) {
-   return (
-    (c >= '0' && c <= '9') || 
-    (c >= 'a' && c <= 'z') || 
-    (c >= 'A' && c <= 'Z'));
+   return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+// Comprobar si el carácter es numerico
+int ft_is_num(char c) {
+   return ((c >= '0' && c <= '9')); /*Si ambas condiciones son verdaderas, entonces c es un dígito numérico. La función retorna 1 (que en C es considerado como verdadero), indicando que el carácter dado es un dígito numérico. Si alguna de las condiciones no es verdadera, la función retorna 0 (falso), indicando que el carácter no es un dígito numérico.*/
 }
 
 // Capitalizar la primera letra de cada palabra
@@ -46,10 +47,14 @@ char *ft_strcapitalize(char *str) {
     int new_word = 1;
 
     while (str[i] != '\0') {
-        if (ft_is_alnum(str[i])) {
-            if (new_word && (str[i] >= 'a' && str[i] <= 'z')) {
+        if (ft_is_al(str[i]) && ft_is_num(str[i])) 
+            {
+            if (new_word && (str[i] >= 'a' && str[i] <= 'z')) 
+            {
                 str[i] = str[i] - 32; // Convertir a mayúscula
-            } else if (!new_word && (str[i] >= 'A' && str[i] <= 'Z')) {
+            } 
+            else if (!new_word && (str[i] >= 'A' && str[i] <= 'Z')) 
+            {
                 str[i] = str[i] + 32; // Convertir a minúscula
             }
             new_word = 0;
