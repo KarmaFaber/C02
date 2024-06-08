@@ -23,7 +23,7 @@ char *ft_strdowncase(char *str) // pasar a minusculas
     i = 0;
     while (str [i] != '\0')
     {
-        if (str [i] >='A' && str [i] <='Z')
+        if (str [i] >='A' || str [i] <='Z')
         {
             str[i] =str[i] + 32; 
         }
