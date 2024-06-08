@@ -23,7 +23,7 @@ char *ft_strdowncase(char *str) // pasar a minusculas
     i = 0;
     while (str [i] != '\0')
     {
-        if (str [i] >='a' && str [i] <='z')
+        if (str [i] >='A' && str [i] <='Z')
         {
             str[i] =str[i] + 32; 
         }
@@ -32,44 +32,42 @@ char *ft_strdowncase(char *str) // pasar a minusculas
     return str;
 }
 
-int ft_str_is_alpha_n(char *str)// comprobacion de si el sring es alfanumerico
-{
-	while (*str)
-	{
-		if ((*str >= '0' && *str <= '9') || (*str >= 'a' && *str <= 'z'))
-		{
-			str ++ ;
-		}
-		else
-		{
-			return (0);
-		}
-	}
-	return (1);
+// Comprobar si el carácter es alfanumérico
+int ft_is_al(char c) {
+   return (
+    (c >= '0' && c <= '9') || 
+    (c >= 'a' && c <= 'z') || 
+    (c >= 'A' && c <= 'Z'));
 }
 
+// Capitalizar la primera letra de cada palabra
+char *ft_strcapitalize(char *str) {
+    int i = 0;
+    int new_word = 1;
 
-char *ft_strcapitalize(char *str)
-
-{
-    int i;
-    i = 0;
-    while (str[i] != '\0')
-    {
-    if (ft_str_is_alpha_n == 1)
-        ft_strupcase(str[i]);
-        
-    
-    i ++ ;
+    while (str[i] != '\0') {
+        if (ft_is_alnum(str[i])) {
+            if (new_word && (str[i] >= 'a' && str[i] <= 'z')) {
+                str[i] = str[i] - 32; // Convertir a mayúscula
+            } else if (!new_word && (str[i] >= 'A' && str[i] <= 'Z')) {
+                str[i] = str[i] + 32; // Convertir a minúscula
+            }
+            new_word = 0;
+        } else {
+            new_word = 1;
+        }
+        i++;
     }
-    
+    return str;
 }
 
+#include <stdio.h>
+int main(void) {
+    char str[] = "salut, comment tu vas ? 42mots quarante-deux; cinquante+et+un. coSas de unicornios*locos (o a lo mejor not ). #in. El proyecto avanzó mucHo el último anio. El equipo del Dr. Martinez & Dra. López +descubrió una ~pr$ote,ina que po@dría reVOLUCIOnar tratamientos contra el ¬cáncer. Colab€oraron con \\?universidades: Tokio, Harvard, etc. El estudio tuvo >1,200 participantes (pacientes & voluntarios). Resultados se publicaron en \"Nature Medicine\" y fueron debatidos en conferencias globales.";
 
-int main (void)
+    ft_strcapitalize(str);
 
-{
-    ft_strcapitalize("salut, comment tu vas ? 42mots quarante-deux; cinquante+et+un. coSas de unicornios*locos (o a lo mejor not ). #in. El proyecto avanzó mucHo el último año. El equipo del Dr. Martínez & Dra. López +descubrió una ~pr$ote,ína que po@dría reVOLUCIOnar tratamientos contra el ¬cáncer. Colab€oraron con \?universidades: Tokio, Harvard, etc. El estudio tuvo >1,200 participantes (pacientes & voluntarios). Resultados se publicaron en \"Nature Medicine\" y fueron debatidos en conferencias globales.");
-    
- 
+    // Imprimir el resultado
+    printf("%s\n", str);
+    return 0;
 }
